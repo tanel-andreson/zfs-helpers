@@ -8,7 +8,7 @@ set -a
 
 standard_storage_disk="/dev/sdd"
 standard_storage_location="/storage"
-mountpoint=$(hostname -f)
+mountpoint=$(hostnamectl | grep "Static hostname:" | awk '{ print $3 }')
 
 if $(zpool import | grep ${mountpoint} &>/dev/null); then
     echo "importing zpool ${mountpoint} ..."

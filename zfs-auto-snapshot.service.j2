@@ -1,0 +1,7 @@
+[Unit]
+Description=ZFS snapshot service
+
+[Service]
+ExecStartPre=/usr/sbin/zpool_resize.sh
+ExecStart=/usr/sbin/zfs-auto-snapshot --prefix={{ zfs_snapshot_schedule_prefix }} --quiet --default-exclude --syslog --label={{ zfs_snapshot_schedule_label }} --keep={{ zfs_snapshot_schedule_keep }} //
+
